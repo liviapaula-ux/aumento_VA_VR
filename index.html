@@ -30,18 +30,17 @@
                 <h1 class="text-4xl font-black text-slate-900 mt-2">People <span class="ifood-red">Reward</span></h1>
             </div>
             
-            <nav class="flex gap-8 border-b border-slate-200 w-full md:w-auto">
-                <button onclick="switchTab('vavr')" id="tab-vavr" class="pb-2 text-sm uppercase tracking-tighter transition-all tab-active">Impacto VA/VR</button>
-                <button onclick="switchTab('flex')" id="tab-flex" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold">Novos Grupos Flex</button>
+            <nav class="flex gap-8 border-b border-slate-200 w-full md:w-auto overflow-x-auto">
+                <button onclick="switchTab('vavr')" id="tab-vavr" class="pb-2 text-sm uppercase tracking-tighter transition-all tab-active whitespace-nowrap">Impacto VA/VR</button>
+                <button onclick="switchTab('flex')" id="tab-flex" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold whitespace-nowrap">Novos Grupos Flex</button>
+                <button onclick="switchTab('creche')" id="tab-creche" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold whitespace-nowrap">Impacto Auxílio Creche</button>
             </nav>
         </header>
 
         <!-- ABA 1: IMPACTO VA/VR -->
         <div id="content-vavr" class="space-y-8">
-            
-            <!-- KPIs MENSAIS -->
             <div>
-                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Visão Mensal Consolidados</h4>
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Visão Mensal Consolidados (VA/VR)</h4>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div class="card p-6 border-b-4 border-slate-300">
                         <p class="text-xs text-slate-400 font-black uppercase mb-1">Pessoas Totais</p>
@@ -53,30 +52,29 @@
                     </div>
                     <div class="card p-6 border-b-4 border-green-500">
                         <p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Mensal (L*)</p>
-                        <h3 id="kpi-total-new" class="text-2xl font-black text-slate-800">R$ 9.007.943,00</h3>
+                        <h3 class="text-2xl font-black text-slate-800">R$ 9.007.943,00</h3>
                     </div>
                     <div class="card p-6 border-b-4 border-red-500">
                         <p class="text-xs text-slate-400 font-black uppercase mb-1">Delta Mensal</p>
-                        <h3 id="kpi-total-impact" class="text-3xl font-black ifood-red">R$ 344.160,00</h3>
+                        <h3 class="text-3xl font-black ifood-red">R$ 344.160,00</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- KPIs ANUALIZADOS -->
             <div>
                 <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Projeção Anualizada (12 Meses)</h4>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="card kpi-annual p-6 text-white">
                         <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Investimento Anual Atual</p>
-                        <h3 id="kpi-annual-current" class="text-3xl font-black">R$ 103.965.396,00</h3>
+                        <h3 class="text-3xl font-black">R$ 103.965.396,00</h3>
                     </div>
                     <div class="card kpi-annual p-6 text-white border-l-4 border-green-500">
                         <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Novo Investimento Anual</p>
-                        <h3 id="kpi-annual-new" class="text-3xl font-black text-green-400">R$ 108.095.316,00</h3>
+                        <h3 class="text-3xl font-black text-green-400">R$ 108.095.316,00</h3>
                     </div>
                     <div class="card kpi-annual p-6 text-white border-l-4 border-red-500">
                         <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Impacto Anual Incremental</p>
-                        <h3 id="kpi-annual-impact" class="text-3xl font-black text-red-500">R$ 4.129.920,00</h3>
+                        <h3 class="text-3xl font-black text-red-500">R$ 4.129.920,00</h3>
                     </div>
                 </div>
             </div>
@@ -130,14 +128,13 @@
             </div>
 
             <div id="dashboard-flex" class="space-y-8 pb-10">
-                <!-- Seção Exceto Pago -->
                 <div class="card overflow-hidden">
                     <div class="p-6 bg-slate-800 text-white flex justify-between items-center">
                         <h3 class="font-black uppercase tracking-widest">Todos Exceto Pago</h3>
                         <span class="text-[10px] bg-white/20 px-2 py-1 rounded font-bold uppercase">Reajuste Padrão</span>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-left border-collapse text-sm">
                             <thead>
                                 <tr class="bg-slate-50 border-b">
                                     <th class="p-4 text-xs font-black text-slate-500 uppercase">Grupo Flex</th>
@@ -153,14 +150,13 @@
                     </div>
                 </div>
 
-                <!-- Seção Pago -->
                 <div class="card overflow-hidden">
                     <div class="p-6 bg-red-600 text-white flex justify-between items-center">
                         <h3 class="font-black uppercase tracking-widest">iFood Pago</h3>
                         <span class="text-[10px] bg-white/20 px-2 py-1 rounded font-bold uppercase">Reajuste Específico</span>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                        <table class="w-full text-left border-collapse text-sm">
                             <thead>
                                 <tr class="bg-slate-50 border-b">
                                     <th class="p-4 text-xs font-black text-slate-500 uppercase">Grupo Flex</th>
@@ -176,13 +172,80 @@
                 </div>
             </div>
         </div>
+
+        <!-- ABA 3: AUXÍLIO CRECHE -->
+        <div id="content-creche" class="hidden space-y-8">
+            <div>
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Visão Mensal Consolidados (Auxílio Creche)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="card p-6 border-b-4 border-slate-300">
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Beneficiários</p>
+                        <h3 class="text-3xl font-black text-slate-800">512</h3>
+                    </div>
+                    <div class="card p-6 border-b-4 border-blue-500">
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Custo Atual</p>
+                        <h3 class="text-2xl font-black text-slate-800">R$ 382.464,00</h3>
+                    </div>
+                    <div class="card p-6 border-b-4 border-green-500">
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Custo</p>
+                        <h3 class="text-2xl font-black text-slate-800">R$ 397.762,56</h3>
+                    </div>
+                    <div class="card p-6 border-b-4 border-red-500">
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Delta Mensal (+4%)</p>
+                        <h3 class="text-3xl font-black ifood-red">R$ 15.298,56</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Projeção Anualizada (Creche)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card kpi-annual p-6 text-white">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Investimento Anual Atual</p>
+                        <h3 class="text-3xl font-black">R$ 4.589.568,00</h3>
+                    </div>
+                    <div class="card kpi-annual p-6 text-white border-l-4 border-green-500">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Novo Investimento Anual</p>
+                        <h3 class="text-3xl font-black text-green-400">R$ 4.773.150,72</h3>
+                    </div>
+                    <div class="card kpi-annual p-6 text-white border-l-4 border-red-500">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Impacto Anual Incremental</p>
+                        <h3 class="text-3xl font-black text-red-500">R$ 183.582,72</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-8">
+                    <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight mb-8">Impacto Creche por Empresa</h3>
+                    <div class="h-[400px]"><canvas id="crecheImpactChart"></canvas></div>
+                </div>
+                <div class="card overflow-hidden">
+                    <div class="p-8 border-b border-slate-100 bg-slate-50/50">
+                        <h3 class="text-lg font-black text-slate-800 uppercase">Resumo por Empresa (Creche)</h3>
+                    </div>
+                    <div class="overflow-x-auto scroll-custom h-[400px]">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th class="p-4 text-xs font-black text-slate-400 uppercase border-b">Empresa</th>
+                                    <th class="p-4 text-xs font-black text-slate-400 uppercase border-b text-center">Pessoas</th>
+                                    <th class="p-4 text-xs font-black text-slate-400 uppercase border-b text-right">Delta (+)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="creche-table-body" class="divide-y divide-slate-100"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // --- DADOS CONSOLIDADOS (HARDCODED) ---
+        // --- DADOS CONSOLIDADOS VA/VR ---
         const vavrByCompany = [
             { name: "IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A", count: 6245, current: 7525225, next: 7824985 },
-            { name: "IFOOD PAGO (MOVILÉ PAY S.A)", count: 925, current: 1138558, next: 1182958 } // Incluído Regra 858
+            { name: "IFOOD PAGO (MOVILÉ PAY S.A)", count: 925, current: 1138558, next: 1182958 }
         ];
 
         const gradeGroupsData = [
@@ -194,6 +257,7 @@
             { label: "Grades 17 e 18", count: 30, currentSum: 73283, nextSum: 74723 }
         ];
 
+        // --- DADOS CONSOLIDADOS FLEX ---
         const flexData = {
             excetoPago: [
                 { id: "Flex_01", cargo: "Estagiários", grades: "-", atual: 1520, novo: 1558 },
@@ -217,11 +281,19 @@
             ]
         };
 
-        // --- INICIALIZAÇÃO ---
+        // --- DADOS CONSOLIDADOS CRECHE (NOVO) ---
+        const crecheByCompany = [
+            { name: "001 - IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A", count: 486, delta: 14580.00 },
+            { name: "002 - IFOOD PAGO (MOVILÉ PAY S.A)", count: 26, delta: 718.56 }
+        ];
+
+        let vavrCharts = {};
+
         window.onload = function() {
             Chart.register(ChartDataLabels);
             renderVavr();
             renderFlex();
+            renderCreche();
         };
 
         function formatCurrency(v) {
@@ -229,19 +301,20 @@
         }
 
         function switchTab(tab) {
-            document.querySelectorAll('nav button').forEach(b => {
-                b.classList.remove('tab-active');
-                b.classList.add('text-slate-400');
+            const tabs = ['vavr', 'flex', 'creche'];
+            tabs.forEach(t => {
+                document.getElementById('tab-' + t).classList.remove('tab-active');
+                document.getElementById('tab-' + t).classList.add('text-slate-400');
+                document.getElementById('content-' + t).classList.add('hidden');
             });
             document.getElementById('tab-' + tab).classList.add('tab-active');
             document.getElementById('tab-' + tab).classList.remove('text-slate-400');
-            
-            document.getElementById('content-vavr').classList.toggle('hidden', tab !== 'vavr');
-            document.getElementById('content-flex').classList.toggle('hidden', tab !== 'flex');
+            document.getElementById('content-' + tab).classList.remove('hidden');
         }
 
         function renderVavr() {
             const tbody = document.getElementById('company-table-body');
+            tbody.innerHTML = '';
             vavrByCompany.forEach(c => {
                 tbody.innerHTML += `
                     <tr class="hover:bg-red-50 transition-colors">
@@ -253,11 +326,10 @@
                     </tr>`;
             });
 
-            // Gráfico Empresa
             new Chart(document.getElementById('companyImpactChart'), {
                 type: 'bar',
                 data: {
-                    labels: vavrByCompany.map(c => c.name.length > 20 ? c.name.substring(0, 17) + '...' : c.name),
+                    labels: vavrByCompany.map(c => c.name.length > 15 ? c.name.substring(0, 12) + '...' : c.name),
                     datasets: [{ data: vavrByCompany.map(c => c.next - c.current), backgroundColor: '#ea1d2c', borderRadius: 8, barThickness: 30 }]
                 },
                 options: {
@@ -265,13 +337,12 @@
                     layout: { padding: { right: 80 } },
                     plugins: { 
                         legend: { display: false },
-                        datalabels: { anchor: 'end', align: 'end', formatter: v => formatCurrency(v), font: { weight: 'bold', size: 10 }, color: '#ea1d2c' }
+                        datalabels: { anchor: 'end', align: 'end', formatter: v => formatCurrency(v), font: { weight: 'bold', size: 9 }, color: '#ea1d2c' }
                     },
-                    scales: { x: { display: false }, y: { grid: { display: false }, ticks: { font: { size: 10, weight: 'bold' } } } }
+                    scales: { x: { display: false }, y: { grid: { display: false }, ticks: { font: { size: 9, weight: 'bold' } } } }
                 }
             });
 
-            // Gráfico Grades
             const avgC = gradeGroupsData.map(g => g.currentSum / g.count);
             const avgN = gradeGroupsData.map(g => g.nextSum / g.count);
             new Chart(document.getElementById('gradeAverageChart'), {
@@ -297,28 +368,59 @@
 
         function renderFlex() {
             const bodyE = document.getElementById('flex-table-exceto-pago');
+            bodyE.innerHTML = '';
             flexData.excetoPago.forEach(r => {
                 bodyE.innerHTML += `
                     <tr class="hover:bg-slate-50 transition-all">
                         <td class="p-4 font-bold text-slate-700">${r.id}</td>
-                        <td class="p-4 text-slate-600">${r.cargo}</td>
+                        <td class="p-4 text-slate-600 text-xs">${r.cargo}</td>
                         <td class="p-4 text-slate-400 italic text-xs">${r.grades}</td>
                         <td class="p-4 text-center font-medium">${r.atual}</td>
                         <td class="p-4 text-center font-black text-green-600 bg-green-50">${r.novo}</td>
-                        <td class="p-4 text-center font-bold text-red-500">+ ${r.novo - r.atual} pts</td>
+                        <td class="p-4 text-center font-bold text-red-500 tracking-tighter">+ ${r.novo - r.atual} pts</td>
                     </tr>`;
             });
 
             const bodyP = document.getElementById('flex-table-pago');
+            bodyP.innerHTML = '';
             flexData.pago.forEach(r => {
                 bodyP.innerHTML += `
                     <tr class="hover:bg-slate-50 transition-all">
                         <td class="p-4 font-bold text-slate-700">${r.id}</td>
-                        <td class="p-4 text-slate-600">${r.cargo}</td>
+                        <td class="p-4 text-slate-600 text-xs">${r.cargo}</td>
                         <td class="p-4 text-center font-medium">${r.atual}</td>
                         <td class="p-4 text-center font-black text-green-600 bg-green-50">${r.novo}</td>
-                        <td class="p-4 text-center font-bold text-red-500">+ ${r.novo - r.atual} pts</td>
+                        <td class="p-4 text-center font-bold text-red-500 tracking-tighter">+ ${r.novo - r.atual} pts</td>
                     </tr>`;
+            });
+        }
+
+        function renderCreche() {
+            const tbody = document.getElementById('creche-table-body');
+            tbody.innerHTML = '';
+            crecheByCompany.forEach(c => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-red-50 transition-colors text-xs">
+                        <td class="p-4 font-bold text-slate-700 uppercase">${c.name}</td>
+                        <td class="p-4 text-center font-bold text-slate-500">${c.count}</td>
+                        <td class="p-4 text-right font-black ifood-red">+ ${formatCurrency(c.delta)}</td>
+                    </tr>`;
+            });
+
+            new Chart(document.getElementById('crecheImpactChart'), {
+                type: 'bar',
+                data: {
+                    labels: crecheByCompany.map(c => c.name.split('-')[1]?.trim().substring(0,10) + '...'),
+                    datasets: [{ data: crecheByCompany.map(c => c.delta), backgroundColor: '#ea1d2c', borderRadius: 8, barThickness: 40 }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        datalabels: { anchor: 'end', align: 'top', formatter: v => formatCurrency(v), font: { weight: 'bold', size: 10 }, color: '#ea1d2c' }
+                    },
+                    scales: { x: { grid: { display: false } }, y: { display: false } }
+                }
             });
         }
     </script>
