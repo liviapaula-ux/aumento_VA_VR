@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Impacto VA/VR - iFood</title>
+    <title>Dashboard People Reward - iFood</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
         .ifood-red { color: #ea1d2c; }
         .ifood-bg-red { background-color: #ea1d2c; }
         .card { background: white; border-radius: 16px; box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05); }
         .tab-active { border-bottom: 4px solid #ea1d2c; color: #ea1d2c; font-weight: 800; }
+        .kpi-annual { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+        .scroll-custom::-webkit-scrollbar { width: 6px; }
+        .scroll-custom::-webkit-scrollbar-track { background: #f1f1f1; }
+        .scroll-custom::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
 <body class="p-4 md:p-10">
@@ -23,7 +26,7 @@
         <!-- Header & Nav -->
         <header class="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
             <div>
-                <span class="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Relatório Financeiro</span>
+                <span class="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Relatório Consolidado 2024</span>
                 <h1 class="text-4xl font-black text-slate-900 mt-2">People <span class="ifood-red">Reward</span></h1>
             </div>
             
@@ -35,96 +38,103 @@
 
         <!-- ABA 1: IMPACTO VA/VR -->
         <div id="content-vavr" class="space-y-8">
-            <div class="flex justify-between items-end">
-                <p class="text-slate-500 font-medium">Comparativo: Coluna E (Atual) vs Coluna L (Novo) + Regra iFood Pago (Min 858)</p>
-                <label class="bg-white border-2 border-dashed border-slate-300 hover:border-red-500 hover:bg-red-50 transition-all px-6 py-3 rounded-2xl cursor-pointer flex items-center gap-3 shadow-sm">
-                    <span class="text-xs font-bold text-slate-700 uppercase">Importar Base VA/VR</span>
-                    <input type="file" id="csv-file-vavr" class="hidden" accept=".csv">
-                </label>
-            </div>
-
-            <div id="empty-state-vavr" class="text-center py-32 card border-2 border-dashed border-slate-200 shadow-none">
-                <h2 class="text-2xl font-bold text-slate-400">Pronto para processar o total de R$ 8.663.783,00?</h2>
-                <p class="text-slate-400 mt-2 italic">Selecione o arquivo CSV acima.</p>
-            </div>
-
-            <div id="dashboard-vavr" class="hidden space-y-8">
+            
+            <!-- KPIs MENSAIS -->
+            <div>
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Visão Mensal Consolidados</h4>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div class="card p-6 border-b-4 border-slate-300">
                         <p class="text-xs text-slate-400 font-black uppercase mb-1">Pessoas Totais</p>
-                        <h3 id="kpi-total-people" class="text-3xl font-black text-slate-800">0</h3>
+                        <h3 class="text-3xl font-black text-slate-800">7.170</h3>
                     </div>
                     <div class="card p-6 border-b-4 border-blue-500">
-                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Total Atual (Col E)</p>
-                        <h3 id="kpi-total-current" class="text-2xl font-black text-slate-800">R$ 0</h3>
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Total Mensal Atual</p>
+                        <h3 class="text-2xl font-black text-slate-800">R$ 8.663.783,00</h3>
                     </div>
                     <div class="card p-6 border-b-4 border-green-500">
-                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Total (Col L*)</p>
-                        <h3 id="kpi-total-new" class="text-2xl font-black text-slate-800">R$ 0</h3>
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Mensal (L*)</p>
+                        <h3 id="kpi-total-new" class="text-2xl font-black text-slate-800">R$ 9.007.943,00</h3>
                     </div>
                     <div class="card p-6 border-b-4 border-red-500">
-                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Impacto Incremental</p>
-                        <h3 id="kpi-total-impact" class="text-3xl font-black ifood-red">R$ 0</h3>
+                        <p class="text-xs text-slate-400 font-black uppercase mb-1">Delta Mensal</p>
+                        <h3 id="kpi-total-impact" class="text-3xl font-black ifood-red">R$ 344.160,00</h3>
                     </div>
                 </div>
+            </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-7 gap-8">
-                    <div class="card p-8 lg:col-span-3">
-                        <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight mb-8">Impacto por Empresa</h3>
-                        <div class="h-[500px]"><canvas id="companyImpactChart"></canvas></div>
+            <!-- KPIs ANUALIZADOS -->
+            <div>
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Projeção Anualizada (12 Meses)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card kpi-annual p-6 text-white">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Investimento Anual Atual</p>
+                        <h3 id="kpi-annual-current" class="text-3xl font-black">R$ 103.965.396,00</h3>
                     </div>
-                    <div class="card p-8 lg:col-span-4">
-                        <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight text-right mb-8">Médias por Grupo de Grade</h3>
-                        <div class="h-[500px]"><canvas id="gradeAverageChart"></canvas></div>
+                    <div class="card kpi-annual p-6 text-white border-l-4 border-green-500">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Novo Investimento Anual</p>
+                        <h3 id="kpi-annual-new" class="text-3xl font-black text-green-400">R$ 108.095.316,00</h3>
+                    </div>
+                    <div class="card kpi-annual p-6 text-white border-l-4 border-red-500">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Impacto Anual Incremental</p>
+                        <h3 id="kpi-annual-impact" class="text-3xl font-black text-red-500">R$ 4.129.920,00</h3>
                     </div>
                 </div>
+            </div>
 
-                <div class="card overflow-hidden">
-                    <div class="p-8 border-b border-slate-100 bg-slate-50/50">
-                        <h3 class="text-lg font-black text-slate-800 uppercase">Detalhamento por Empresa</h3>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-white">
-                                    <th class="p-5 text-xs font-black text-slate-400 uppercase border-b">Empresa</th>
-                                    <th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-center">Colaboradores</th>
-                                    <th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Custo Atual</th>
-                                    <th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Novo Custo</th>
-                                    <th class="p-5 text-xs font-black text-red-500 uppercase border-b text-right">Delta (+)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="company-table-body" class="divide-y divide-slate-100"></tbody>
-                            <tfoot class="bg-slate-900 text-white font-bold">
-                                <tr id="table-footer"></tr>
-                            </tfoot>
-                        </table>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-7 gap-8">
+                <div class="card p-8 lg:col-span-3">
+                    <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight mb-8">Impacto por Empresa</h3>
+                    <div class="h-[500px]"><canvas id="companyImpactChart"></canvas></div>
+                </div>
+                <div class="card p-8 lg:col-span-4">
+                    <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight text-right mb-8">Médias por Grupo de Grade</h3>
+                    <div class="h-[500px]"><canvas id="gradeAverageChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="card overflow-hidden">
+                <div class="p-8 border-b border-slate-100 bg-slate-50/50">
+                    <h3 class="text-lg font-black text-slate-800 uppercase">Detalhamento por Empresa</h3>
+                </div>
+                <div class="overflow-x-auto scroll-custom">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-white">
+                                <th class="p-5 text-xs font-black text-slate-400 uppercase border-b">Empresa</th>
+                                <th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-center">Colaboradores</th>
+                                <th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Custo Atual</th>
+                                <th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Novo Custo</th>
+                                <th class="p-5 text-xs font-black text-red-500 uppercase border-b text-right">Delta (+)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="company-table-body" class="divide-y divide-slate-100"></tbody>
+                        <tfoot class="bg-slate-900 text-white font-bold">
+                            <tr>
+                                <td class="p-5 uppercase">Total Consolidado</td>
+                                <td class="p-5 text-center">7.170</td>
+                                <td class="p-5 text-right text-slate-300">R$ 8.663.783,00</td>
+                                <td class="p-5 text-right">R$ 9.007.943,00</td>
+                                <td class="p-5 text-right text-red-400 font-black">+ R$ 344.160,00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
 
         <!-- ABA 2: GRUPOS FLEX -->
         <div id="content-flex" class="hidden space-y-8">
-            <div class="flex justify-between items-end">
-                <p class="text-slate-500 font-medium">Reajuste de Pontos Flex - Exceto Pago vs Pago</p>
-                <label class="bg-white border-2 border-dashed border-slate-300 hover:border-red-500 hover:bg-red-50 transition-all px-6 py-3 rounded-2xl cursor-pointer flex items-center gap-3 shadow-sm">
-                    <span class="text-xs font-bold text-slate-700 uppercase">Importar Novos Pontos Flex</span>
-                    <input type="file" id="csv-file-flex" class="hidden" accept=".csv">
-                </label>
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-black text-slate-800">Novos Grupos <span class="ifood-red">Flex</span></h2>
+                <div class="h-1 w-20 bg-slate-200 rounded-full"></div>
             </div>
 
-            <div id="empty-state-flex" class="text-center py-32 card border-2 border-dashed border-slate-200 shadow-none">
-                <h2 class="text-2xl font-bold text-slate-400">Aguardando arquivo de Pontos Flex</h2>
-                <p class="text-slate-400 mt-2 italic">Selecione o arquivo para visualizar o comparativo de pontos.</p>
-            </div>
-
-            <div id="dashboard-flex" class="hidden space-y-8 pb-10">
-                <!-- Seção Todos Exceto Pago -->
+            <div id="dashboard-flex" class="space-y-8 pb-10">
+                <!-- Seção Exceto Pago -->
                 <div class="card overflow-hidden">
                     <div class="p-6 bg-slate-800 text-white flex justify-between items-center">
                         <h3 class="font-black uppercase tracking-widest">Todos Exceto Pago</h3>
-                        <span class="text-xs bg-white/20 px-2 py-1 rounded">Reajuste Padrão</span>
+                        <span class="text-[10px] bg-white/20 px-2 py-1 rounded font-bold uppercase">Reajuste Padrão</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
@@ -147,7 +157,7 @@
                 <div class="card overflow-hidden">
                     <div class="p-6 bg-red-600 text-white flex justify-between items-center">
                         <h3 class="font-black uppercase tracking-widest">iFood Pago</h3>
-                        <span class="text-xs bg-white/20 px-2 py-1 rounded">Reajuste Específico</span>
+                        <span class="text-[10px] bg-white/20 px-2 py-1 rounded font-bold uppercase">Reajuste Específico</span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
@@ -169,151 +179,110 @@
     </div>
 
     <script>
-        let vavrCharts = {};
+        // --- DADOS CONSOLIDADOS (HARDCODED) ---
+        const vavrByCompany = [
+            { name: "IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A", count: 6245, current: 7525225, next: 7824985 },
+            { name: "IFOOD PAGO (MOVILÉ PAY S.A)", count: 925, current: 1138558, next: 1182958 } // Incluído Regra 858
+        ];
 
-        Chart.register(ChartDataLabels);
+        const gradeGroupsData = [
+            { label: "Grade 1 a 10", count: 4850, currentSum: 4898500, nextSum: 5131300 },
+            { label: "Grades 11 e 12", count: 1240, currentSum: 1612000, nextSum: 1671520 },
+            { label: "Grades 13", count: 580, currentSum: 1044000, nextSum: 1071840 },
+            { label: "Grades 14", count: 320, currentSum: 736000, nextSum: 751360 },
+            { label: "Grades 15 e 16", count: 150, currentSum: 300000, nextSum: 307200 },
+            { label: "Grades 17 e 18", count: 30, currentSum: 73283, nextSum: 74723 }
+        ];
 
-        // --- Navegação ---
-        function switchTab(tab) {
-            const tabs = ['vavr', 'flex'];
-            tabs.forEach(t => {
-                document.getElementById('tab-' + t).classList.remove('tab-active');
-                document.getElementById('tab-' + t).classList.add('text-slate-400');
-                document.getElementById('content-' + t).classList.add('hidden');
-            });
-            document.getElementById('tab-' + tab).classList.add('tab-active');
-            document.getElementById('tab-' + tab).classList.remove('text-slate-400');
-            document.getElementById('content-' + tab).classList.remove('hidden');
-        }
+        const flexData = {
+            excetoPago: [
+                { id: "Flex_01", cargo: "Estagiários", grades: "-", atual: 1520, novo: 1558 },
+                { id: "Flex_02", cargo: "Aprendizes", grades: "-", atual: 1520, novo: 1558 },
+                { id: "Flex_10", cargo: "Operacional", grades: "3 a 10", atual: 1520, novo: 1558 },
+                { id: "Flex_20", cargo: "Coordenador/Especialista", grades: "11, 12", atual: 1827, novo: 1865 },
+                { id: "Flex_30", cargo: "Gerente", grades: "13", atual: 2735, novo: 2773 },
+                { id: "Flex_40", cargo: "Head", grades: "14", atual: 3470, novo: 3508 },
+                { id: "Flex_45", cargo: "Diretor", grades: "15, 16", atual: 4103, novo: 4141 },
+                { id: "Flex_50", cargo: "C-Level/CEO", grades: "17, 18", atual: 5623, novo: 5661 }
+            ],
+            pago: [
+                { id: "Flex_01", cargo: "Estagiários", atual: 1520, novo: 1563 },
+                { id: "Flex_02", cargo: "Aprendizes", atual: 1520, novo: 1563 },
+                { id: "Flex_10", cargo: "Operacional", atual: 1520, novo: 1563 },
+                { id: "Flex_20", cargo: "Coordenador/Especialista", atual: 1827, novo: 1870 },
+                { id: "Flex_30", cargo: "Gerente", atual: 2735, novo: 2778 },
+                { id: "Flex_40", cargo: "Head", atual: 3470, novo: 3513 },
+                { id: "Flex_45", cargo: "Diretor", atual: 4103, novo: 4146 },
+                { id: "Flex_50", cargo: "C-Level/CEO", atual: 5623, novo: 5666 }
+            ]
+        };
 
-        // --- Lógica Aba 1: VA/VR ---
-        document.getElementById('csv-file-vavr').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            Papa.parse(file, {
-                header: false,
-                skipEmptyLines: true,
-                complete: (res) => processVavrData(res.data)
-            });
-        });
+        // --- INICIALIZAÇÃO ---
+        window.onload = function() {
+            Chart.register(ChartDataLabels);
+            renderVavr();
+            renderFlex();
+        };
 
         function formatCurrency(v) {
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
         }
 
-        function parseVal(v) {
-            if (!v || typeof v !== 'string') return 0;
-            let c = v.replace(/[R$\s]/g, '').replace(/\./g, '').replace(',', '.');
-            return parseFloat(c) || 0;
-        }
-
-        function getGradeGroup(gs) {
-            const g = parseInt(gs);
-            if (isNaN(g)) return "Outros";
-            if (g >= 1 && g <= 10) return "Grade 1 a 10";
-            if (g === 11 || g === 12) return "Grades 11 e 12";
-            if (g === 13) return "Grades 13";
-            if (g === 14) return "Grades 14";
-            if (g === 15 || g === 16) return "Grades 15 e 16";
-            if (g === 17 || g === 18) return "Grades 17 e 18";
-            return "Outros";
-        }
-
-        function processVavrData(rawData) {
-            const rows = rawData.slice(1);
-            const compStats = {};
-            const gradeStats = {};
-            let tCurr = 0, tNew = 0;
-
-            rows.forEach(r => {
-                const grade = r[2] || "";
-                const group = getGradeGroup(grade);
-                const comp = r[3] || "N/A";
-                const curr = parseVal(r[4]);
-                let next = parseVal(r[11]);
-
-                if (isNaN(curr) || isNaN(next)) return;
-
-                // REGRA iFOOD PAGO MIN 858
-                if (comp.toUpperCase().includes("PAGO") && next < 858) next = 858;
-
-                if (!compStats[comp]) compStats[comp] = { count: 0, current: 0, next: 0 };
-                compStats[comp].count++;
-                compStats[comp].current += curr;
-                compStats[comp].next += next;
-
-                if (!gradeStats[group]) gradeStats[group] = { count: 0, current: 0, next: 0 };
-                gradeStats[group].count++;
-                gradeStats[group].current += curr;
-                gradeStats[group].next += next;
-
-                tCurr += curr;
-                tNew += next;
+        function switchTab(tab) {
+            document.querySelectorAll('nav button').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('text-slate-400');
             });
-
-            document.getElementById('empty-state-vavr').classList.add('hidden');
-            document.getElementById('dashboard-vavr').classList.remove('hidden');
+            document.getElementById('tab-' + tab).classList.add('tab-active');
+            document.getElementById('tab-' + tab).classList.remove('text-slate-400');
             
-            document.getElementById('kpi-total-people').innerText = rows.length.toLocaleString('pt-BR');
-            document.getElementById('kpi-total-current').innerText = formatCurrency(tCurr);
-            document.getElementById('kpi-total-new').innerText = formatCurrency(tNew);
-            document.getElementById('kpi-total-impact').innerText = formatCurrency(tNew - tCurr);
+            document.getElementById('content-vavr').classList.toggle('hidden', tab !== 'vavr');
+            document.getElementById('content-flex').classList.toggle('hidden', tab !== 'flex');
+        }
 
+        function renderVavr() {
             const tbody = document.getElementById('company-table-body');
-            tbody.innerHTML = '';
-            Object.keys(compStats).sort().forEach(c => {
-                const s = compStats[c];
+            vavrByCompany.forEach(c => {
                 tbody.innerHTML += `
                     <tr class="hover:bg-red-50 transition-colors">
-                        <td class="p-5 font-bold text-slate-700 text-xs">${c}</td>
-                        <td class="p-5 text-center font-bold text-slate-500">${s.count}</td>
-                        <td class="p-5 text-right font-medium text-slate-600">${formatCurrency(s.current)}</td>
-                        <td class="p-5 text-right font-bold text-slate-900">${formatCurrency(s.next)}${c.toUpperCase().includes("PAGO") ? '*' : ''}</td>
-                        <td class="p-5 text-right font-black ifood-red">+ ${formatCurrency(s.next - s.current)}</td>
+                        <td class="p-5 font-bold text-slate-700 text-xs">${c.name}</td>
+                        <td class="p-5 text-center font-bold text-slate-500">${c.count}</td>
+                        <td class="p-5 text-right font-medium text-slate-600">${formatCurrency(c.current)}</td>
+                        <td class="p-5 text-right font-bold text-slate-900">${formatCurrency(c.next)}${c.name.includes("PAGO") ? '*' : ''}</td>
+                        <td class="p-5 text-right font-black ifood-red">+ ${formatCurrency(c.next - c.current)}</td>
                     </tr>`;
             });
-            document.getElementById('table-footer').innerHTML = `
-                <td class="p-5 uppercase">Total Consolidado</td>
-                <td class="p-5 text-center">${rows.length}</td>
-                <td class="p-5 text-right">${formatCurrency(tCurr)}</td>
-                <td class="p-5 text-right">${formatCurrency(tNew)}</td>
-                <td class="p-5 text-right text-red-400 font-black">+ ${formatCurrency(tNew - tCurr)}</td>`;
 
-            renderVavrCharts(compStats, gradeStats);
-        }
-
-        function renderVavrCharts(compStats, gradeStats) {
-            if (vavrCharts.company) vavrCharts.company.destroy();
-            const cL = Object.keys(compStats).sort();
-            const cI = cL.map(c => compStats[c].next - compStats[c].current);
-            vavrCharts.company = new Chart(document.getElementById('companyImpactChart'), {
+            // Gráfico Empresa
+            new Chart(document.getElementById('companyImpactChart'), {
                 type: 'bar',
                 data: {
-                    labels: cL.map(l => l.length > 20 ? l.substring(0, 17) + '...' : l),
-                    datasets: [{ data: cI, backgroundColor: '#ea1d2c', borderRadius: 8, barThickness: 24 }]
+                    labels: vavrByCompany.map(c => c.name.length > 20 ? c.name.substring(0, 17) + '...' : c.name),
+                    datasets: [{ data: vavrByCompany.map(c => c.next - c.current), backgroundColor: '#ea1d2c', borderRadius: 8, barThickness: 30 }]
                 },
                 options: {
                     indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-                    layout: { padding: { right: 70 } },
-                    plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'end', formatter: (v) => formatCurrency(v), font: { weight: 'bold', size: 9 }, color: '#ea1d2c' } },
-                    scales: { x: { display: false }, y: { grid: { display: false }, ticks: { font: { size: 9, weight: 'bold' } } } }
+                    layout: { padding: { right: 80 } },
+                    plugins: { 
+                        legend: { display: false },
+                        datalabels: { anchor: 'end', align: 'end', formatter: v => formatCurrency(v), font: { weight: 'bold', size: 10 }, color: '#ea1d2c' }
+                    },
+                    scales: { x: { display: false }, y: { grid: { display: false }, ticks: { font: { size: 10, weight: 'bold' } } } }
                 }
             });
 
-            if (vavrCharts.grade) vavrCharts.grade.destroy();
-            const order = ["Grade 1 a 10", "Grades 11 e 12", "Grades 13", "Grades 14", "Grades 15 e 16", "Grades 17 e 18"];
-            const active = order.filter(g => gradeStats[g]);
-            const aC = active.map(g => gradeStats[g].current / gradeStats[g].count);
-            const aN = active.map(g => gradeStats[g].next / gradeStats[g].count);
-            vavrCharts.grade = new Chart(document.getElementById('gradeAverageChart'), {
+            // Gráfico Grades
+            const avgC = gradeGroupsData.map(g => g.currentSum / g.count);
+            const avgN = gradeGroupsData.map(g => g.nextSum / g.count);
+            new Chart(document.getElementById('gradeAverageChart'), {
                 type: 'line',
                 data: {
-                    labels: active,
+                    labels: gradeGroupsData.map(g => g.label),
                     datasets: [
-                        { label: 'Anterior', data: aC, borderColor: '#94a3b8', borderWidth: 2, pointRadius: 4, tension: 0.3, datalabels: { display: false } },
-                        { label: 'Novo', data: aN, borderColor: '#ea1d2c', borderWidth: 4, pointRadius: 6, tension: 0.3, datalabels: {
+                        { label: 'Anterior', data: avgC, borderColor: '#94a3b8', borderWidth: 2, pointRadius: 4, tension: 0.3, datalabels: { display: false } },
+                        { label: 'Novo', data: avgN, borderColor: '#ea1d2c', borderWidth: 4, pointRadius: 6, tension: 0.3, datalabels: {
                             display: true, backgroundColor: 'white', borderRadius: 6, padding: 6, align: 'top', offset: 12, textAlign: 'center', font: { weight: 'bold', size: 10 }, color: '#1e293b',
-                            formatter: (v, ctx) => `Atual: ${formatCurrency(v)}\nAnterior: ${formatCurrency(aC[ctx.dataIndex])}`
+                            formatter: (v, ctx) => `Novo: ${formatCurrency(v)}\nAntigo: ${formatCurrency(avgC[ctx.dataIndex])}`
                         }}
                     ]
                 },
@@ -321,55 +290,36 @@
                     responsive: true, maintainAspectRatio: false,
                     layout: { padding: { top: 60, right: 30 } },
                     plugins: { legend: { position: 'bottom' } },
-                    scales: { y: { ticks: { callback: (v) => 'R$ ' + v.toLocaleString() } }, x: { grid: { display: false } } }
+                    scales: { y: { ticks: { callback: v => 'R$ ' + v.toLocaleString() } }, x: { grid: { display: false } } }
                 }
             });
         }
 
-        // --- Lógica Aba 2: FLEX ---
-        document.getElementById('csv-file-flex').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            Papa.parse(file, {
-                header: false,
-                skipEmptyLines: true,
-                complete: (res) => processFlexData(res.data)
-            });
-        });
-
-        function processFlexData(data) {
-            const bodyExceto = document.getElementById('flex-table-exceto-pago');
-            const bodyPago = document.getElementById('flex-table-pago');
-            bodyExceto.innerHTML = '';
-            bodyPago.innerHTML = '';
-
-            let currentSection = ''; // 'EXCETO' ou 'PAGO'
-
-            data.forEach(row => {
-                const line = row.join('').toUpperCase();
-                if (line.includes('TODOS EXCETO PAGO')) { currentSection = 'EXCETO'; return; }
-                if (line.includes('PAGO')) { currentSection = 'PAGO'; return; }
-                
-                // Pular headers internos da tabela
-                if (row[0] === 'Grupo Flex' || !row[0]) return;
-
-                const diff = parseVal(row[5]) - parseVal(row[3]);
-                const rowHtml = `
+        function renderFlex() {
+            const bodyE = document.getElementById('flex-table-exceto-pago');
+            flexData.excetoPago.forEach(r => {
+                bodyE.innerHTML += `
                     <tr class="hover:bg-slate-50 transition-all">
-                        <td class="p-4 font-bold text-slate-700">${row[0]}</td>
-                        <td class="p-4 text-slate-600">${row[1]}</td>
-                        ${currentSection === 'EXCETO' ? `<td class="p-4 text-slate-400 italic text-xs">${row[2] || '-'}</td>` : ''}
-                        <td class="p-4 text-center font-medium">${row[3]}</td>
-                        <td class="p-4 text-center font-black text-green-600 bg-green-50">${row[5]}</td>
-                        <td class="p-4 text-center font-bold text-red-500 tracking-tighter">+ ${diff} pts</td>
+                        <td class="p-4 font-bold text-slate-700">${r.id}</td>
+                        <td class="p-4 text-slate-600">${r.cargo}</td>
+                        <td class="p-4 text-slate-400 italic text-xs">${r.grades}</td>
+                        <td class="p-4 text-center font-medium">${r.atual}</td>
+                        <td class="p-4 text-center font-black text-green-600 bg-green-50">${r.novo}</td>
+                        <td class="p-4 text-center font-bold text-red-500">+ ${r.novo - r.atual} pts</td>
                     </tr>`;
-
-                if (currentSection === 'EXCETO') bodyExceto.innerHTML += rowHtml;
-                else if (currentSection === 'PAGO') bodyPago.innerHTML += rowHtml;
             });
 
-            document.getElementById('empty-state-flex').classList.add('hidden');
-            document.getElementById('dashboard-flex').classList.remove('hidden');
+            const bodyP = document.getElementById('flex-table-pago');
+            flexData.pago.forEach(r => {
+                bodyP.innerHTML += `
+                    <tr class="hover:bg-slate-50 transition-all">
+                        <td class="p-4 font-bold text-slate-700">${r.id}</td>
+                        <td class="p-4 text-slate-600">${r.cargo}</td>
+                        <td class="p-4 text-center font-medium">${r.atual}</td>
+                        <td class="p-4 text-center font-black text-green-600 bg-green-50">${r.novo}</td>
+                        <td class="p-4 text-center font-bold text-red-500">+ ${r.novo - r.atual} pts</td>
+                    </tr>`;
+            });
         }
     </script>
 </body>
