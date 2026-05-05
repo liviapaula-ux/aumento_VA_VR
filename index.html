@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard People Reward - iFood</title>
+    <title>Dashboard People Benefits - iFood</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
@@ -19,7 +19,6 @@
         .scroll-custom::-webkit-scrollbar-track { background: #f1f1f1; }
         .scroll-custom::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         
-        /* Estilos da Seção Estratégica */
         .gradient-text { background: linear-gradient(90deg, #ea1d2c, #b91c1c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .tag-sind { background-color: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; }
         .tag-ifood { background-color: #fee2e2; color: #b91c1c; padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; }
@@ -35,48 +34,53 @@
         <header class="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
             <div>
                 <span class="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Relatório Consolidado 2026</span>
-                <h1 class="text-4xl font-black text-slate-900 mt-2">People <span class="ifood-red">Reward</span></h1>
+                <h1 class="text-4xl font-black text-slate-900 mt-2">People <span class="ifood-red">Benefits</span></h1>
             </div>
             
-            <nav class="flex gap-8 border-b border-slate-200 w-full md:w-auto overflow-x-auto">
+            <nav class="flex gap-8 border-b border-slate-200 w-full md:w-auto overflow-x-auto scroll-custom">
                 <button onclick="switchTab('vavr')" id="tab-vavr" class="pb-2 text-sm uppercase tracking-tighter transition-all tab-active whitespace-nowrap">Impacto VA/VR</button>
                 <button onclick="switchTab('mercado')" id="tab-mercado" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold whitespace-nowrap">Estudo de Mercado</button>
                 <button onclick="switchTab('cenarios')" id="tab-cenarios" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold whitespace-nowrap">Visão Estratégica 26/27</button>
                 <button onclick="switchTab('flex')" id="tab-flex" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold whitespace-nowrap">Novos Grupos Flex</button>
-                <button onclick="switchTab('creche')" id="tab-creche" class="pb-2 text-sm uppercase tracking-tighter transition-all text-slate-400 hover:text-slate-600 font-bold whitespace-nowrap">Impacto Auxílio Creche</button>
             </nav>
         </header>
 
         <!-- ABA 1: IMPACTO VA/VR -->
         <div id="content-vavr" class="space-y-8">
-            <div>
-                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Visão Mensal Consolidados (VA/VR)</h4>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="card p-6 border-b-4 border-slate-300"><p class="text-xs text-slate-400 font-black uppercase mb-1">Pessoas Totais</p><h3 class="text-3xl font-black text-slate-800">7.170</h3></div>
-                    <div class="card p-6 border-b-4 border-blue-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Total Mensal Atual</p><h3 class="text-2xl font-black text-slate-800">R$ 8.663.783,00</h3></div>
-                    <div class="card p-6 border-b-4 border-green-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Mensal (L*)</p><h3 class="text-2xl font-black text-slate-800">R$ 9.007.943,00</h3></div>
-                    <div class="card p-6 border-b-4 border-red-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Delta Mensal</p><h3 class="text-3xl font-black ifood-red">R$ 344.160,00</h3></div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="card p-6 border-b-4 border-slate-300"><p class="text-xs text-slate-400 font-black uppercase mb-1">Pessoas Totais</p><h3 class="text-3xl font-black text-slate-800">7.170</h3></div>
+                <div class="card p-6 border-b-4 border-blue-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Total Mensal Atual</p><h3 class="text-2xl font-black text-slate-800">R$ 8.663.783,00</h3></div>
+                <div class="card p-6 border-b-4 border-green-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Mensal (L*)</p><h3 class="text-2xl font-black text-slate-800">R$ 9.007.943,00</h3></div>
+                <div class="card p-6 border-b-4 border-red-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Delta Mensal</p><h3 class="text-3xl font-black ifood-red">R$ 344.160,00</h3></div>
             </div>
-            <div>
-                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Projeção Anualizada (12 Meses)</h4>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="card kpi-annual p-6 text-white"><p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Investimento Anual Atual</p><h3 class="text-3xl font-black">R$ 103.965.396,00</h3></div>
-                    <div class="card kpi-annual p-6 text-white border-l-4 border-green-500"><p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Novo Investimento Anual</p><h3 class="text-3xl font-black text-green-400">R$ 108.095.316,00</h3></div>
-                    <div class="card kpi-annual p-6 text-white border-l-4 border-red-500"><p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Impacto Anual Incremental</p><h3 class="text-3xl font-black text-red-500">R$ 4.129.920,00</h3></div>
-                </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card kpi-annual p-6 text-white"><p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Investimento Anual Atual</p><h3 class="text-3xl font-black">R$ 103.965.396,00</h3></div>
+                <div class="card kpi-annual p-6 text-white border-l-4 border-green-500"><p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Novo Investimento Anual</p><h3 class="text-3xl font-black text-green-400">R$ 108.095.316,00</h3></div>
+                <div class="card kpi-annual p-6 text-white border-l-4 border-red-500"><p class="text-[10px] text-slate-400 font-black uppercase mb-1 tracking-wider">Impacto Anual Incremental</p><h3 class="text-3xl font-black text-red-500">R$ 4.129.920,00</h3></div>
             </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-7 gap-8">
-                <div class="card p-8 lg:col-span-3"><h3 class="text-xl font-black text-slate-800 uppercase tracking-tight mb-8">Impacto por Empresa</h3><div class="h-[500px]"><canvas id="companyImpactChart"></canvas></div></div>
-                <div class="card p-8 lg:col-span-4"><h3 class="text-xl font-black text-slate-800 uppercase tracking-tight text-right mb-8">Médias por Grupo de Grade</h3><div class="h-[500px]"><canvas id="gradeAverageChart"></canvas></div></div>
+                <div class="card p-8 lg:col-span-3"><h3 class="text-xl font-black text-slate-800 uppercase tracking-tight mb-8">Impacto por Empresa</h3><div class="h-[450px]"><canvas id="companyImpactChart"></canvas></div></div>
+                <div class="card p-8 lg:col-span-4 relative">
+                    <h3 class="text-xl font-black text-slate-800 uppercase tracking-tight text-right mb-8">Médias por Grupo de Grade</h3>
+                    <div class="h-[450px]"><canvas id="gradeAverageChart"></canvas></div>
+                </div>
             </div>
+
             <div class="card overflow-hidden">
                 <div class="p-8 border-b border-slate-100 bg-slate-50/50 text-sm font-black text-slate-800 uppercase">Detalhamento por Empresa</div>
-                <div class="overflow-x-auto scroll-custom"><table class="w-full text-left border-collapse text-sm"><thead><tr class="bg-white"><th class="p-5 text-xs font-black text-slate-400 uppercase border-b">Empresa</th><th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-center">Colaboradores</th><th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Custo Atual</th><th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Novo Custo</th><th class="p-5 text-xs font-black text-red-500 uppercase border-b text-right">Delta (+)</th></tr></thead><tbody id="company-table-body" class="divide-y divide-slate-100"></tbody><tfoot class="bg-slate-900 text-white font-bold"><tr><td class="p-5 uppercase">Total Consolidado</td><td class="p-5 text-center">7.170</td><td class="p-5 text-right text-slate-300">R$ 8.663.783,00</td><td class="p-5 text-right">R$ 9.007.943,00</td><td class="p-5 text-right text-red-400 font-black">+ R$ 344.160,00</td></tr></tfoot></table></div>
+                <div class="overflow-x-auto scroll-custom">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead><tr class="bg-white"><th class="p-5 text-xs font-black text-slate-400 uppercase border-b">Empresa</th><th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-center">Colaboradores</th><th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Custo Atual</th><th class="p-5 text-xs font-black text-slate-400 uppercase border-b text-right">Novo Custo</th><th class="p-5 text-xs font-black text-red-500 uppercase border-b text-right">Delta (+)</th></tr></thead>
+                        <tbody id="company-table-body" class="divide-y divide-slate-100"></tbody>
+                        <tfoot class="bg-slate-900 text-white font-bold"><tr><td class="p-5 uppercase">Total Consolidado</td><td class="p-5 text-center">7.170</td><td class="p-5 text-right text-slate-300">R$ 8.663.783,00</td><td class="p-5 text-right">R$ 9.007.943,00</td><td class="p-5 text-right text-red-400 font-black">+ R$ 344.160,00</td></tr></tfoot>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- ABA 2: ESTUDO DE MERCADO (NOVA) -->
+        <!-- ABA 2: ESTUDO DE MERCADO -->
         <div id="content-mercado" class="hidden space-y-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2 card p-8">
@@ -93,28 +97,17 @@
                         <div class="p-4 bg-white/5 rounded-xl border-l-4 border-blue-400">
                             <p class="text-[10px] uppercase font-bold text-blue-400 mb-1">Média Proj. 4,1% (Min 843)</p>
                             <h4 class="text-2xl font-black text-white">R$ 1.240,00</h4>
-                            <p class="text-[9px] text-slate-400 mt-1 italic">* Acréscimo de R$ 33,00 na média por pessoa</p>
                         </div>
                         <div class="p-4 bg-white/5 rounded-xl border-l-4 border-green-400">
                             <p class="text-[10px] uppercase font-bold text-green-400 mb-1">Média Proj. 6,0% (Min 858)</p>
                             <h4 class="text-2xl font-black text-white">R$ 1.255,00</h4>
-                            <p class="text-[9px] text-slate-400 mt-1 italic">* Acréscimo de R$ 48,00 na média por pessoa</p>
                         </div>
                     </div>
-                    <div class="mt-10 p-4 bg-red-900/20 border border-red-900/50 rounded-lg">
-                        <p class="text-[11px] text-red-300 leading-tight"><strong>Nota:</strong> O aumento na média iFood é impulsionado diretamente pela correção do valor mínimo garantido, mantendo-se competitivo frente ao mercado tradicional (Itaú).</p>
-                    </div>
                 </div>
-            </div>
-            <div class="card overflow-hidden">
-                <div class="p-6 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
-                    <h3 class="text-sm font-black text-slate-800 uppercase">Tabela de Referência de Mercado</h3>
-                </div>
-                <div class="overflow-x-auto"><table class="w-full text-left border-collapse text-sm"><thead><tr class="bg-white"><th class="p-4 text-xs font-black text-slate-400 uppercase border-b">Empresa</th><th class="p-4 text-xs font-black text-slate-400 uppercase border-b text-right">Valor VA/VR (Média)</th><th class="p-4 text-xs font-black text-slate-400 uppercase border-b text-center">Status vs iFood</th></tr></thead><tbody class="divide-y divide-slate-100"><tr><td class="p-4 font-bold text-slate-700">Nubank</td><td class="p-4 text-right font-black">R$ 2.000,00</td><td class="p-4 text-center"><span class="px-2 py-1 bg-red-100 text-red-600 text-[10px] font-bold rounded uppercase">Acima</span></td></tr><tr><td class="p-4 font-bold text-slate-700">Mercado Livre</td><td class="p-4 text-right font-black">R$ 1.750,00</td><td class="p-4 text-center"><span class="px-2 py-1 bg-red-100 text-red-600 text-[10px] font-bold rounded uppercase">Acima</span></td></tr><tr><td class="p-4 font-bold text-slate-700">iFood (Novo 6%)</td><td class="p-4 text-right font-black text-ifood-red">R$ 1.255,00</td><td class="p-4 text-center"><span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded uppercase">Referência</span></td></tr><tr><td class="p-4 font-bold text-slate-700">Itaú</td><td class="p-4 text-right font-black">R$ 1.300,00</td><td class="p-4 text-center"><span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] font-bold rounded uppercase">Próximo</span></td></tr></tbody></table></div>
             </div>
         </div>
 
-        <!-- ABA 3: VISÃO ESTRATÉGICA (CÓDIGO NA ÍNTEGRA) -->
+        <!-- ABA 3: VISÃO ESTRATÉGICA -->
         <div id="content-cenarios" class="hidden space-y-6">
             <div class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-slate-100">
                 <header class="mb-8 border-b border-gray-200 pb-6 flex justify-between items-end">
@@ -130,49 +123,33 @@
                     <button onclick="switchSubTab(3)" id="scenarioTab3" class="pb-2 text-gray-400 hover:text-gray-600 transition-all">ANÁLISE DE APORTE (%)</button>
                 </div>
                 <div id="scenarioView">
-                    <div class="mb-6"><p id="scenarioDescription" class="text-sm font-semibold text-gray-700 bg-gray-100 p-3 rounded-lg inline-block">4,1% de aumento do valor do mínimo praticado atualmente 810 > 843</p></div>
+                    <div class="mb-6"><p id="scenarioDescription" class="text-sm font-semibold text-gray-700 bg-gray-100 p-3 rounded-lg inline-block"></p></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="card border-l-4 border-red-500 bg-gradient-to-br from-white to-red-50 p-6"><p class="text-xs text-gray-500 font-semibold uppercase">Projeção 2026/2027 (iFood)</p><p id="kpiIfood" class="text-3xl font-black text-gray-800">R$ 843,00</p><p id="kpiGrowth" class="text-xs text-red-600 mt-1 font-bold">▲ 4.1% Proposto</p></div>
-                        <div class="card border-l-4 border-slate-500 p-6"><p class="text-xs text-gray-500 font-semibold uppercase">Gap Estratégico Projetado</p><p id="kpiGapPercent" class="text-3xl font-black text-gray-800">27.7%</p><p class="text-xs text-gray-400 mt-1">Acima do piso da categoria*</p></div>
-                        <div class="card border-l-4 border-green-500 p-6"><p class="text-xs text-gray-500 font-semibold uppercase">Excedente iFood</p><p id="kpiExtraValue" class="text-3xl font-black text-gray-800">R$ 183,00</p><p class="text-xs text-green-600 mt-1 font-bold">Valor Mensal Extra (26/27)</p></div>
+                        <div class="card border-l-4 border-red-500 p-6"><p class="text-xs text-gray-500 font-semibold uppercase">Projeção iFood</p><p id="kpiIfood" class="text-3xl font-black text-gray-800"></p><p id="kpiGrowth" class="text-xs text-red-600 mt-1 font-bold"></p></div>
+                        <div class="card border-l-4 border-slate-500 p-6"><p class="text-xs text-gray-500 font-semibold uppercase">Gap Estratégico</p><p id="kpiGapPercent" class="text-3xl font-black text-gray-800"></p><p class="text-xs text-gray-400 mt-1">Acima do piso</p></div>
+                        <div class="card border-l-4 border-green-500 p-6"><p class="text-xs text-gray-500 font-semibold uppercase">Excedente</p><p id="kpiExtraValue" class="text-3xl font-black text-gray-800"></p><p class="text-xs text-green-600 mt-1 font-bold">Valor Extra Mensal</p></div>
                     </div>
-                    <div class="card p-6 mb-8"><div class="flex justify-between items-center mb-6"><h3 class="text-xl font-bold text-gray-800">Evolução do Investimento VA/VR</h3><div class="flex gap-4 text-xs font-semibold"><span class="flex items-center gap-1"><span class="w-3 h-0.5 bg-red-600"></span> iFood (R$ e %)</span><span class="flex items-center gap-1"><span class="w-3 h-0.5 bg-slate-400 border-t border-dashed"></span> Sindicato (R$ e %)</span></div></div><div class="h-[450px]"><canvas id="masterChart"></canvas></div><p class="text-[11px] text-gray-400 italic mt-6">*O valor de R$ 660 (26/27) do Sindicato é uma projeção estratégica mantida para ambos os cenários.</p></div>
-                    <div class="card max-w-2xl mx-auto p-6 border border-slate-100 shadow-sm rounded-xl mb-8"><h3 class="text-lg font-bold text-gray-800 mb-4 text-center">Dados Detalhados (2024-2027)</h3><div class="space-y-3" id="timelineList"></div></div>
+                    <div class="card p-6 mb-8"><div class="h-[450px]"><canvas id="masterChart"></canvas></div></div>
+                    <div id="timelineList" class="space-y-3 max-w-2xl mx-auto mb-8"></div>
                 </div>
                 <div id="aporteView" class="hidden-tab">
-                    <div class="mb-6"><p class="text-sm font-semibold text-gray-700 bg-blue-50 p-3 rounded-lg inline-block border border-blue-100">Análise da curva de investimento incremental do iFood sobre o piso sindical</p></div>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                        <div class="lg:col-span-2 card p-6"><h3 class="text-xl font-bold text-gray-800 mb-6">Evolução Histórica e Projeção de Aporte (%)</h3><div class="h-[450px]"><canvas id="aporteChart"></canvas></div><p class="text-[12px] text-gray-600 leading-relaxed mt-6"><strong>*Nota explicativa de cenário (26/27):</strong> 27,7% se R$ 843 de mínimo (aumento de 4,1%) e 30% se R$ 858 de mínimo (aumento de 6%).</p></div>
-                        <div class="card bg-gray-900 text-white p-6 overflow-hidden"><h3 class="text-lg font-bold mb-4 text-red-400 border-b border-gray-700 pb-2">Memória de Cálculo (28-32)</h3><div class="space-y-4"><div class="p-3 bg-gray-800 rounded-lg border-l-2 border-slate-500 text-xs text-gray-300">Calculamos a <strong>Média de Ganho de Aporte Anual</strong> dos últimos 4 anos estratégicos (22/23 a 26/27).</div><div class="space-y-3"><div class="flex justify-between items-center text-xs border-b border-gray-800 pb-1"><span class="text-gray-400">Taxa de Aceleração</span><span class="text-green-400 font-bold">+ 3,65 p.p. / ano</span></div><div class="bg-gray-800/50 p-3 rounded-lg space-y-2"><div class="flex justify-between items-center text-xs font-semibold text-gray-300">Ciclo 28/29: <span class="text-white">36,5%</span></div><div class="flex justify-between items-center text-xs font-semibold text-gray-300">Ciclo 30/31: <span class="text-white">44,0%</span></div><div class="flex justify-between items-center text-xs font-semibold text-gray-300">Ciclo 31/32: <span class="text-white">48,0%</span></div></div></div></div></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2 card p-6"><h3 class="text-xl font-bold text-gray-800 mb-6">Histórico e Projeção de Aporte</h3><div class="h-[450px]"><canvas id="aporteChart"></canvas></div></div>
+                        <div class="card bg-gray-900 text-white p-6"><h3 class="text-lg font-bold mb-4 text-red-400 border-b border-gray-700 pb-2">Memória (28-32)</h3><p class="text-xs text-gray-300">Baseado na média de ganho de aporte anual (+3,65 p.p/ano).</p></div>
                     </div>
                 </div>
-                <footer class="mt-12 pt-8 border-t border-gray-200 text-center pb-12"><p class="text-gray-500 text-sm mb-4 font-semibold uppercase tracking-widest">Material de Apoio</p><a href="https://docs.google.com/spreadsheets/d/1bsGMcoLmSzT6TJ0tbf6hdCgJtr1jLUvXw1vCwqXesBU/edit?gid=0#gid=0" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-6 py-3 rounded-full hover:bg-blue-100 transition-all font-bold shadow-sm border border-blue-200"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Consulta de Dados Detalhados (Planilha)</a></footer>
             </div>
         </div>
 
         <!-- ABA 4: NOVOS GRUPOS FLEX -->
         <div id="content-flex" class="hidden space-y-8">
-            <div class="card overflow-hidden"><div class="p-6 bg-slate-800 text-white flex justify-between items-center"><h3 class="font-black uppercase tracking-widest">Todos Exceto Pago</h3></div><div class="overflow-x-auto"><table class="w-full text-left border-collapse text-sm"><tbody id="flex-table-exceto-pago" class="divide-y divide-slate-100"></tbody></table></div></div>
-            <div class="card overflow-hidden"><div class="p-6 bg-red-600 text-white flex justify-between items-center"><h3 class="font-black uppercase tracking-widest">iFood Pago</h3></div><div class="overflow-x-auto"><table class="w-full text-left border-collapse text-sm"><tbody id="flex-table-pago" class="divide-y divide-slate-100"></tbody></table></div></div>
-        </div>
-
-        <!-- ABA 5: IMPACTO AUXÍLIO CRECHE -->
-        <div id="content-creche" class="hidden space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="card p-6 border-b-4 border-slate-300"><p class="text-xs text-slate-400 font-black uppercase mb-1">Beneficiários</p><h3 class="text-3xl font-black text-slate-800">512</h3></div>
-                <div class="card p-6 border-b-4 border-blue-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Custo Atual</p><h3 class="text-2xl font-black text-slate-800">R$ 382.464,00</h3></div>
-                <div class="card p-6 border-b-4 border-green-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Novo Custo</p><h3 class="text-2xl font-black text-slate-800">R$ 397.762,56</h3></div>
-                <div class="card p-6 border-b-4 border-red-500"><p class="text-xs text-slate-400 font-black uppercase mb-1">Delta Mensal (+4%)</p><h3 class="text-3xl font-black ifood-red">R$ 15.298,56</h3></div>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="card p-8"><h3 class="text-xl font-black text-slate-800 uppercase tracking-tight mb-8">Impacto Creche por Empresa</h3><div class="h-[400px]"><canvas id="crecheImpactChart"></canvas></div></div>
-                <div class="card overflow-hidden"><div class="p-8 border-b border-slate-100 bg-slate-50/50"><h3 class="text-lg font-black text-slate-800 uppercase">Resumo por Empresa (Creche)</h3></div><div class="overflow-x-auto scroll-custom h-[400px]"><table class="w-full text-left border-collapse text-xs"><tbody id="creche-table-body" class="divide-y divide-slate-100"></tbody></table></div></div>
-            </div>
+            <div class="card overflow-hidden"><div class="p-6 bg-slate-800 text-white font-black uppercase text-sm">Todos Exceto Pago</div><div class="overflow-x-auto"><table class="w-full text-left text-sm"><tbody id="flex-table-exceto-pago" class="divide-y divide-slate-100"></tbody></table></div></div>
+            <div class="card overflow-hidden"><div class="p-6 bg-red-600 text-white font-black uppercase text-sm">iFood Pago</div><div class="overflow-x-auto"><table class="w-full text-left text-sm"><tbody id="flex-table-pago" class="divide-y divide-slate-100"></tbody></table></div></div>
         </div>
     </div>
 
     <script>
-        // --- DADOS ORIGINAIS MANTIDOS ---
+        // --- DADOS ---
         const vavrByCompany = [
             { name: "IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A", count: 6245, current: 7525225, next: 7824985 },
             { name: "IFOOD PAGO (MOVILÉ PAY S.A)", count: 925, current: 1138558, next: 1182958 }
@@ -204,12 +181,7 @@
                 { id: "Flex_50", cargo: "C-Level/CEO", atual: 5623, novo: 5666 }
             ]
         };
-        const crecheByCompany = [
-            { name: "IFOOD.COM AGENCIA DE RESTAURANTES ONLINE S.A", count: 486, delta: 14580.00 },
-            { name: "IFOOD PAGO (MOVILÉ PAY S.A)", count: 26, delta: 718.56 }
-        ];
 
-        // --- SCENARIO DATA ---
         const scenarioBaseData = [
             { period: '18/19', sind: 396, ifood: 430, growthS: 0, growthI: 0, aporte: 8.6 },
             { period: '19/20', sind: 418, ifood: 440, growthS: 5.5, growthI: 2.3, aporte: 5.3 },
@@ -220,30 +192,38 @@
             { period: '24/25', sind: 583, ifood: 663, growthS: 6.0, growthI: 5.2, aporte: 13.7 },
             { period: '25/26', sind: 660, ifood: 810, growthS: 13.2, growthI: 22.2, aporte: 22.7 }
         ];
+
         const scenarioConfig = {
             1: { ifood: 843, sind: 660, growthI: 4.1, growthS: 0, desc: "4,1% de aumento do valor do mínimo praticado atualmente 810 > 843", extra: 183, gap: 27.7, aporte: 27.7 },
             2: { ifood: 858, sind: 660, growthI: 5.9, growthS: 0, desc: "Reajuste do mínimo de 810 > 858", extra: 198, gap: 30.0, aporte: 30.0 }
         };
 
-        let vavrCharts = {}, scenarioChart, aporteChart, marketChart;
+        let activeCharts = { company: null, grade: null, market: null, scenario: null, aporte: null };
         let currentScenario = 1;
 
         function formatCurrency(v) { return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v); }
 
         function switchTab(tab) {
-            ['vavr', 'flex', 'creche', 'cenarios', 'mercado'].forEach(t => {
-                document.getElementById('tab-' + t).classList.toggle('tab-active', t === tab);
-                document.getElementById('tab-' + t).classList.toggle('text-slate-400', t !== tab);
-                document.getElementById('content-' + t).classList.toggle('hidden', t !== tab);
+            ['vavr', 'flex', 'cenarios', 'mercado'].forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                const content = document.getElementById('content-' + t);
+                if(btn) {
+                    btn.classList.toggle('tab-active', t === tab);
+                    btn.classList.toggle('text-slate-400', t !== tab);
+                }
+                if(content) content.classList.toggle('hidden', t !== tab);
             });
             if (tab === 'cenarios') switchSubTab(1);
             if (tab === 'mercado') renderMarketChart();
+            if (tab === 'vavr') renderVavr();
+            if (tab === 'flex') renderFlex();
         }
 
         function switchSubTab(id) {
-            document.getElementById('scenarioTab1').className = id === 1 ? 'scenario-tab-active pb-2 transition-all' : 'pb-2 text-gray-400 hover:text-gray-600 transition-all';
-            document.getElementById('scenarioTab2').className = id === 2 ? 'scenario-tab-active pb-2 transition-all' : 'pb-2 text-gray-400 hover:text-gray-600 transition-all';
-            document.getElementById('scenarioTab3').className = id === 3 ? 'scenario-tab-active pb-2 transition-all' : 'pb-2 text-gray-400 hover:text-gray-600 transition-all';
+            [1, 2, 3].forEach(i => {
+                const btn = document.getElementById('scenarioTab' + i);
+                if (btn) btn.className = (i === id) ? 'scenario-tab-active pb-2 transition-all' : 'pb-2 text-gray-400 hover:text-gray-600 transition-all';
+            });
             document.getElementById('scenarioView').classList.toggle('hidden-tab', id === 3);
             document.getElementById('aporteView').classList.toggle('hidden-tab', id !== 3);
             if (id === 3) renderAporteChart(); else switchScenario(id);
@@ -261,9 +241,24 @@
             updateTimeline(id);
         }
 
+        function updateTimeline(id) {
+            const sc = scenarioConfig[id];
+            const list = document.getElementById('timelineList');
+            list.innerHTML = `
+                <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-100">
+                    <span class="text-sm font-bold text-red-600">2026/27 (Proj.)</span>
+                    <div class="flex gap-2"><span class="tag-sind">Sind: R$ ${sc.sind}*</span><span class="tag-ifood">iFood: R$ ${sc.ifood}</span><span class="tag-extra">+ R$ ${sc.extra.toFixed(2)}</span></div>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-white border border-gray-100 rounded-lg">
+                    <span class="text-sm font-semibold text-gray-700">2025/26</span>
+                    <div class="flex gap-2"><span class="tag-sind">Sind: R$ 660,00</span><span class="tag-ifood">iFood: R$ 810</span><span class="tag-extra">+ R$ 150,00</span></div>
+                </div>
+            `;
+        }
+
         function renderMarketChart() {
-            if (marketChart) marketChart.destroy();
-            marketChart = new Chart(document.getElementById('marketChart').getContext('2d'), {
+            if (activeCharts.market) activeCharts.market.destroy();
+            activeCharts.market = new Chart(document.getElementById('marketChart').getContext('2d'), {
                 type: 'bar',
                 data: {
                     labels: ['Nubank', 'Mercado Livre', 'Itaú', 'iFood (Atual)', 'iFood (4.1%)', 'iFood (6%)'],
@@ -276,58 +271,157 @@
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', formatter: v => 'R$ ' + v.toLocaleString(), font: { weight: 'bold' } } },
-                    scales: { y: { beginAtZero: true, ticks: { callback: v => 'R$ ' + v } } }
+                    plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', formatter: v => 'R$ ' + v.toLocaleString(), font: { weight: 'bold' } } }
                 }
             });
         }
 
         function updateScenarioChart() {
+            if (activeCharts.scenario) activeCharts.scenario.destroy();
             const sc = scenarioConfig[currentScenario];
             const data = [...scenarioBaseData, { period: '26/27', sind: sc.sind, ifood: sc.ifood, growthS: sc.growthS, growthI: sc.growthI }];
-            if (scenarioChart) scenarioChart.destroy();
-            scenarioChart = new Chart(document.getElementById('masterChart').getContext('2d'), {
-                type: 'line', data: { labels: data.map(d => d.period), datasets: [{ label: 'iFood (R$)', data: data.map(d => d.ifood), borderColor: '#ea1d2c', backgroundColor: '#ea1d2c', borderWidth: 4, pointRadius: 6, tension: 0.3, datalabels: { align: 'top', offset: 12, color: '#b91c1c', font: { weight: 'bold', size: 10 }, formatter: (v, ctx) => 'R$ ' + Math.round(v) + (data[ctx.dataIndex].growthI > 0 ? ` (+${data[ctx.dataIndex].growthI}%)` : '') } }, { label: 'Sindicato (R$)', data: data.map(d => d.sind), borderColor: '#94a3b8', backgroundColor: '#94a3b8', borderWidth: 2, borderDash: [5, 5], pointRadius: 4, tension: 0.3, datalabels: { align: 'bottom', offset: 12, color: '#64748b', font: { size: 9 }, formatter: (v, ctx) => 'R$ ' + Math.round(v) + (ctx.dataIndex === data.length - 1 ? '*' : '') + (data[ctx.dataIndex].growthS > 0 ? ` (+${data[ctx.dataIndex].growthS}%)` : '') } }] },
-                options: { responsive: true, maintainAspectRatio: false, layout: { padding: { top: 80, bottom: 80, left: 30, right: 30 } }, plugins: { legend: { display: false }, datalabels: { display: true } }, scales: { y: { beginAtZero: false, grid: { color: '#f1f5f9' }, ticks: { callback: v => 'R$ ' + v }, suggestedMax: 1000 }, x: { grid: { display: false } } } }
+            activeCharts.scenario = new Chart(document.getElementById('masterChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.period),
+                    datasets: [
+                        { label: 'iFood (R$)', data: data.map(d => d.ifood), borderColor: '#ea1d2c', backgroundColor: '#ea1d2c', borderWidth: 4, pointRadius: 6, tension: 0.3, datalabels: { align: 'top', formatter: v => 'R$ ' + Math.round(v) } },
+                        { label: 'Sindicato (R$)', data: data.map(d => d.sind), borderColor: '#94a3b8', borderWidth: 2, borderDash: [5, 5], pointRadius: 4, tension: 0.3, datalabels: { align: 'bottom', formatter: v => 'R$ ' + Math.round(v) } }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, layout: { padding: 40 } }
             });
         }
 
         function renderAporteChart() {
-            if (aporteChart) aporteChart.destroy();
-            const labels = ['18/19', '19/20', '20/21', '21/22', '22/23', '23/24', '24/25', '25/26', '26/27*', '28/29 (Proj)', '30/31 (Proj)', '31/32 (Proj)'];
-            const dataValues = [...scenarioBaseData.map(d => d.aporte), 30.0, 36.5, 44.0, 48.0];
-            aporteChart = new Chart(document.getElementById('aporteChart').getContext('2d'), {
-                type: 'bar', data: { labels: labels, datasets: [{ label: 'Aporte (%)', data: dataValues, backgroundColor: (ctx) => ctx.dataIndex >= 9 ? '#cbd5e1' : '#ea1d2c', borderRadius: 6, order: 2, datalabels: { anchor: 'end', align: 'top', color: (ctx) => ctx.dataIndex >= 9 ? '#64748b' : '#b91c1c', font: { weight: 'bold', size: 10 }, formatter: (v) => v.toFixed(1) + '%' } }, { label: 'Linha de Tendência', data: dataValues, type: 'line', borderColor: '#94a3b8', borderWidth: 2, borderDash: [5, 5], pointRadius: 0, fill: false, tension: 0.4, order: 1, datalabels: { display: false } }] },
-                options: { responsive: true, maintainAspectRatio: false, layout: { padding: { top: 50, right: 30 } }, plugins: { legend: { display: false }, datalabels: { display: true } }, scales: { y: { beginAtZero: true, ticks: { callback: (v) => v + '%' }, grid: { color: '#f1f5f9' }, suggestedMax: 60 }, x: { grid: { display: false } } } }
+            if (activeCharts.aporte) activeCharts.aporte.destroy();
+            const hist = scenarioBaseData.map(d => d.aporte);
+            const projs = [30.0, 36.5, 44.0, 48.0];
+            const labels = [...scenarioBaseData.map(d => d.period), '26/27*', '28/29 (P)', '30/31 (P)', '31/32 (P)'];
+            activeCharts.aporte = new Chart(document.getElementById('aporteChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Aporte (%)',
+                        data: [...hist, ...projs],
+                        backgroundColor: (ctx) => ctx.dataIndex >= hist.length ? '#cbd5e1' : '#ea1d2c',
+                        borderRadius: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', formatter: v => v.toFixed(1) + '%' } } }
             });
-        }
-
-        function updateTimeline(id) {
-            const sc = scenarioConfig[id];
-            document.getElementById('timelineList').innerHTML = `<div class="flex items-center justify-between p-2 bg-red-50 rounded-lg"><span class="text-sm font-bold text-red-600">2026/27 (Proj.)</span><div class="flex gap-2"><span class="tag-sind">Sind: R$ ${sc.sind}*</span><span class="tag-ifood">iFood: R$ ${sc.ifood}</span><span class="tag-extra">+ R$ ${sc.extra.toFixed(2)}</span></div></div><div class="flex items-center justify-between p-2 border-t border-gray-100"><span class="text-sm font-semibold text-gray-700">2025/26</span><div class="flex gap-2"><span class="tag-sind">Sind: R$ 660,00</span><span class="tag-ifood">iFood: R$ 810</span><span class="tag-extra">+ R$ 150,00</span></div></div><div class="flex items-center justify-between p-2 border-t border-gray-100"><span class="text-sm font-semibold text-gray-700">2024/25</span><div class="flex gap-2"><span class="tag-sind">Sind: R$ 583,00</span><span class="tag-ifood">iFood: R$ 663</span><span class="tag-extra">+ R$ 80,00</span></div></div>`;
         }
 
         function renderVavr() {
             const tbody = document.getElementById('company-table-body');
-            vavrByCompany.forEach(c => { tbody.innerHTML += `<tr class="hover:bg-red-50 transition-colors"><td class="p-5 font-bold text-slate-700 text-xs">${c.name}</td><td class="p-5 text-center font-bold text-slate-500">${c.count}</td><td class="p-5 text-right font-medium text-slate-600">${formatCurrency(c.current)}</td><td class="p-5 text-right font-bold text-slate-900">${formatCurrency(c.next)}${c.name.includes("PAGO") ? '*' : ''}</td><td class="p-5 text-right font-black ifood-red">+ ${formatCurrency(c.next - c.current)}</td></tr>`; });
-            new Chart(document.getElementById('companyImpactChart'), { type: 'bar', data: { labels: vavrByCompany.map(c => c.name.length > 15 ? c.name.substring(0, 12) + '...' : c.name), datasets: [{ data: vavrByCompany.map(c => c.next - c.current), backgroundColor: '#ea1d2c', borderRadius: 8, barThickness: 30 }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, layout: { padding: { right: 80 } }, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'end', formatter: v => formatCurrency(v), font: { weight: 'bold', size: 9 }, color: '#ea1d2c' } }, scales: { x: { display: false }, y: { grid: { display: false }, ticks: { font: { size: 9, weight: 'bold' } } } } } });
+            tbody.innerHTML = "";
+            vavrByCompany.forEach(c => {
+                tbody.innerHTML += `<tr><td class="p-5 font-bold text-slate-700 text-xs">${c.name}</td><td class="p-5 text-center font-bold text-slate-500">${c.count}</td><td class="p-5 text-right font-medium text-slate-600">${formatCurrency(c.current)}</td><td class="p-5 text-right font-bold text-slate-900">${formatCurrency(c.next)}</td><td class="p-5 text-right font-black ifood-red">+ ${formatCurrency(c.next - c.current)}</td></tr>`;
+            });
+
+            if (activeCharts.company) activeCharts.company.destroy();
+            activeCharts.company = new Chart(document.getElementById('companyImpactChart'), {
+                type: 'bar',
+                data: {
+                    labels: vavrByCompany.map(c => c.name.split(' ')[0]),
+                    datasets: [{ data: vavrByCompany.map(c => c.next - c.current), backgroundColor: '#ea1d2c', borderRadius: 8 }]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+
+            // --- GRÁFICO DE MÉDIAS (RESTAURADO CONFORME PRINT) ---
+            if (activeCharts.grade) activeCharts.grade.destroy();
             const avgC = gradeGroupsData.map(g => g.currentSum / g.count), avgN = gradeGroupsData.map(g => g.nextSum / g.count);
-            new Chart(document.getElementById('gradeAverageChart'), { type: 'line', data: { labels: gradeGroupsData.map(g => g.label), datasets: [{ label: 'Anterior', data: avgC, borderColor: '#94a3b8', borderWidth: 2, pointRadius: 4, tension: 0.3, datalabels: { display: false } }, { label: 'Novo', data: avgN, borderColor: '#ea1d2c', borderWidth: 4, pointRadius: 6, tension: 0.3, datalabels: { display: true, backgroundColor: 'white', borderRadius: 6, padding: 6, align: 'top', offset: 12, textAlign: 'center', font: { weight: 'bold', size: 10 }, color: '#1e293b', formatter: (v, ctx) => `Novo: ${formatCurrency(v)}\nAntigo: ${formatCurrency(avgC[ctx.dataIndex])}` } }] }, options: { responsive: true, maintainAspectRatio: false, layout: { padding: { top: 60, right: 30 } }, plugins: { legend: { position: 'bottom' } }, scales: { y: { ticks: { callback: v => 'R$ ' + v.toLocaleString() } }, x: { grid: { display: false } } } } });
+            activeCharts.grade = new Chart(document.getElementById('gradeAverageChart'), {
+                type: 'line',
+                data: {
+                    labels: gradeGroupsData.map(g => g.label),
+                    datasets: [
+                        { 
+                            label: 'Anterior', 
+                            data: avgC, 
+                            borderColor: '#cbd5e1', 
+                            borderWidth: 2, 
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#cbd5e1',
+                            pointBorderWidth: 2,
+                            pointRadius: 5,
+                            tension: 0.3
+                        },
+                        { 
+                            label: 'Novo', 
+                            data: avgN, 
+                            borderColor: '#ea1d2c', 
+                            borderWidth: 3, 
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#ea1d2c',
+                            pointBorderWidth: 3,
+                            pointRadius: 6,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { 
+                            display: true, 
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: false,
+                                boxWidth: 40,
+                                boxHeight: 12,
+                                padding: 20,
+                                font: { weight: 'bold' }
+                            }
+                        },
+                        datalabels: { 
+                            align: 'top', 
+                            offset: 10,
+                            font: { size: 9, weight: 'bold' },
+                            color: '#1e293b',
+                            textAlign: 'right',
+                            formatter: (v, ctx) => {
+                                // Mostra rótulo apenas no dataset Novo (vermelho) para evitar sobreposição
+                                if (ctx.datasetIndex === 1) {
+                                    return `Novo: ${formatCurrency(v)}\nAntigo: ${formatCurrency(avgC[ctx.dataIndex])}`;
+                                }
+                                return null;
+                            }
+                        } 
+                    },
+                    scales: {
+                        y: {
+                            suggestedMin: 1000,
+                            suggestedMax: 2600,
+                            ticks: {
+                                callback: v => 'R$ ' + v
+                            },
+                            grid: {
+                                color: '#f1f5f9'
+                            }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
         }
 
         function renderFlex() {
-            flexData.excetoPago.forEach(r => { document.getElementById('flex-table-exceto-pago').innerHTML += `<tr class="hover:bg-slate-50 transition-all"><td class="p-4 font-bold text-slate-700">${r.id}</td><td class="p-4 text-slate-600 text-xs">${r.cargo}</td><td class="p-4 text-slate-400 italic text-xs">${r.grades || '-'}</td><td class="p-4 text-center font-medium">${r.atual}</td><td class="p-4 text-center font-black text-green-600 bg-green-50">${r.novo}</td><td class="p-4 text-center font-bold text-red-500 tracking-tighter">+ ${r.novo - r.atual} pts</td></tr>`; });
-            flexData.pago.forEach(r => { document.getElementById('flex-table-pago').innerHTML += `<tr class="hover:bg-slate-50 transition-all"><td class="p-4 font-bold text-slate-700">${r.id}</td><td class="p-4 text-slate-600 text-xs">${r.cargo}</td><td class="p-4 text-center font-medium">${r.atual}</td><td class="p-4 text-center font-black text-green-600 bg-green-50">${r.novo}</td><td class="p-4 text-center font-bold text-red-500 tracking-tighter">+ ${r.novo - r.atual} pts</td></tr>`; });
-        }
-
-        function renderCreche() {
-            crecheByCompany.forEach(c => { document.getElementById('creche-table-body').innerHTML += `<tr class="hover:bg-red-50 transition-colors uppercase"><td class="p-4 font-bold text-slate-700">${c.name}</td><td class="p-4 text-center font-bold text-slate-500">${c.count}</td><td class="p-4 text-right font-black ifood-red">+ ${formatCurrency(c.delta)}</td></tr>`; });
-            new Chart(document.getElementById('crecheImpactChart'), { type: 'bar', data: { labels: crecheByCompany.map(c => c.name.includes("ONLINE") ? "IFOOD S.A" : "PAGO"), datasets: [{ data: crecheByCompany.map(c => c.delta), backgroundColor: '#ea1d2c', borderRadius: 8, barThickness: 40 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', formatter: v => formatCurrency(v), font: { weight: 'bold', size: 10 }, color: '#ea1d2c' } }, scales: { x: { grid: { display: false } }, y: { display: false } } } });
+            const t1 = document.getElementById('flex-table-exceto-pago');
+            const t2 = document.getElementById('flex-table-pago');
+            t1.innerHTML = ""; t2.innerHTML = "";
+            flexData.excetoPago.forEach(r => { t1.innerHTML += `<tr class="hover:bg-slate-50"><td class="p-4 font-bold">${r.id}</td><td class="p-4 text-xs">${r.cargo}</td><td class="p-4 text-center">${r.atual}</td><td class="p-4 text-center font-black text-green-600">${r.novo}</td><td class="p-4 text-center font-bold text-red-500">+ ${r.novo - r.atual} pts</td></tr>`; });
+            flexData.pago.forEach(r => { t2.innerHTML += `<tr class="hover:bg-slate-50"><td class="p-4 font-bold">${r.id}</td><td class="p-4 text-xs">${r.cargo}</td><td class="p-4 text-center">${r.atual}</td><td class="p-4 text-center font-black text-green-600">${r.novo}</td><td class="p-4 text-center font-bold text-red-500">+ ${r.novo - r.atual} pts</td></tr>`; });
         }
 
         window.onload = function() {
             Chart.register(ChartDataLabels);
-            renderVavr(); renderFlex(); renderCreche(); switchTab('vavr');
+            switchTab('vavr');
         };
     </script>
 </body>
